@@ -35,3 +35,8 @@ sudo rosdep init
 rosdep update
 rosdep install -i --from-path src --rosdistro $ROS_DISTRO -y
 rosdep install --from-paths src --ignore-src -r -y
+
+<!-- solve rplidar -->
+sudo chmod +x /dev/ttyUSB0
+sudo chmod 777 /dev/ttyUSB0
+sudo adduser [$USER] dialout
