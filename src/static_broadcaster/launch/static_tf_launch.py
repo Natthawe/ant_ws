@@ -4,8 +4,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='drive_control',
-            executable='drive_control_node',
+            package='static_broadcaster',
+            executable='static_tf2_node',
             output='screen',
         ),
     ])

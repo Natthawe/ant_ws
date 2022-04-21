@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'drive_control'
+package_name = 'static_broadcaster'
 
 setup(
     name=package_name,
@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'drive_control_node = drive_control.drive_control:main',
+            'static_tf2_node = static_broadcaster.static_broadcaster:main',
         ],
     },
 )
