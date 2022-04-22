@@ -9,6 +9,8 @@ ros2 pkg create --build-type ament_cmake <you_pkg_name>
 <!-- create pkg python  -->
 ros2 pkg create --build-type ament_python <you_pkg_name> --dependencies rclpy <pkg_name>
 
+ros2 pkg create obstacle_avoidance --build-type ament_cmake --dependencies rclcpp
+
 <!-- find pkg install in directory src -->
 rosdep install -i --from-path src --rosdistro galactic -y
 
