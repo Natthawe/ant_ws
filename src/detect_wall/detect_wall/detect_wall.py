@@ -27,7 +27,12 @@ class DetectWall(Node):
 
     # print(len(msg.ranges))
     # print(msg.ranges[0])
+    print('Value at 0 degrees:')
+    print(msg.ranges[0])    
+    print('Value at 90 degrees:')
     print(msg.ranges[720])
+    print('Value at 180 degrees:')
+    print(msg.ranges[1440])
 
     # If the distance to an obstacle in front of the robot is bigger than 1 meter, the robot will move forward
     if msg.ranges[720] >= 1.0:
