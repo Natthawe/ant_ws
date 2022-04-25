@@ -7,7 +7,6 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile
 from rclpy.qos import QoSReliabilityPolicy
 from rclpy.qos import QoSDurabilityPolicy
-msg = LaserScan
 
 class DetectWall(Node):
 
@@ -20,10 +19,16 @@ class DetectWall(Node):
 
     self.sub_cmd_vel = self.create_subscription(LaserScan, "scan", self.callback_cmd_vel, qos_profile=qos_policy)
 
+    timer_period = 0.2;self.timer = self.create_timer(timer_period, self.send_cmd_vel)
+
+
 
   def callback_cmd_vel(self, msg):
 
     vel_cmd = Twist()
+
+    print('620: ',msg.ranges[620])
+    print('720: ', msg.ranges[720])
 
     # self.get_logger().info('Value at 180 degrees: %.5f' % msg.ranges[720])
 
@@ -38,13 +43,24 @@ class DetectWall(Node):
     # print('Value at 270 degrees:', msg.ranges[1080])
 
 
+    # n = len(msg.ranges)
+    # for i in range(560,880):
+    #     print(msg.ranges[i])   
+     
+    #     if (msg.ranges[i]) > 1.1:
+    #         vel_cmd.linear.x = 0.15
+    #         vel_cmd.angular.z = 0.0
+
+    #     if (msg.ranges[i]) <= 1.1:
+    #         vel_cmd.linear.x = 0.0
+    #         vel_cmd.angular.z = 0.0          
     # If the distance to an obstacle in front of the robot is bigger than 1 meter, the robot will move forward
-    if msg.ranges[720] >= 0.5:
+    if msg.ranges[720] and msg.ranges[620] >= 1.2:
         vel_cmd.linear.x = 0.15
         vel_cmd.angular.z = 0.0
 
     # If the distance to an obstacle in front of the robot is smaller than 1 meter, the robot will stop
-    if msg.ranges[720] <= 0.5:
+    if msg.ranges[720] and msg.ranges[620] <= 1.2:
         vel_cmd.linear.x = 0.0
         vel_cmd.angular.z = 0.0
     self.pub_cmd_vel.publish(vel_cmd)

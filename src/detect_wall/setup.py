@@ -24,6 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             'detect_wall_node = detect_wall.detect_wall:main',
+            'detect_ex = detect_wall.detect_ex:main',
         ],
     },
 )
