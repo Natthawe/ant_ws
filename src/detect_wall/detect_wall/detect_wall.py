@@ -25,22 +25,26 @@ class DetectWall(Node):
 
     vel_cmd = Twist()
 
+    # self.get_logger().info('Value at 180 degrees: %.5f' % msg.ranges[720])
+
     # print(len(msg.ranges))
-    # print(msg.ranges[0])
-    print('Value at 0 degrees:')
-    print(msg.ranges[0])    
-    print('Value at 90 degrees:')
-    print(msg.ranges[720])
-    print('Value at 180 degrees:')
-    print(msg.ranges[1440])
+
+    # print('Value at 0 degrees:', msg.ranges[-5])
+
+    # print('Value at 90 degrees:', msg.ranges[360])
+  
+    # print('Value at 180 degrees:', msg.ranges[720])
+
+    # print('Value at 270 degrees:', msg.ranges[1080])
+
 
     # If the distance to an obstacle in front of the robot is bigger than 1 meter, the robot will move forward
-    if msg.ranges[720] >= 1.0:
+    if msg.ranges[720] >= 0.5:
         vel_cmd.linear.x = 0.15
         vel_cmd.angular.z = 0.0
 
-    #If the distance to an obstacle in front of the robot is smaller than 1 meter, the robot will stop
-    if msg.ranges[720] <= 1.0:
+    # If the distance to an obstacle in front of the robot is smaller than 1 meter, the robot will stop
+    if msg.ranges[720] <= 0.5:
         vel_cmd.linear.x = 0.0
         vel_cmd.angular.z = 0.0
     self.pub_cmd_vel.publish(vel_cmd)

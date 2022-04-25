@@ -71,8 +71,8 @@ class StaticFramePublisher(Node):
         base_link_to_bno055.transform.rotation.w = 1.0
 
         return(
-            # map_to_odom,
-            # odom_to_base_footprint,
+            map_to_odom,
+            odom_to_base_footprint,
             base_footprint_to_base_link,
             base_link_to_laser,
             base_link_to_bno055,
